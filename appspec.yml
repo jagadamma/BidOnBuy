@@ -1,18 +1,29 @@
 version: 0.0
 os: linux
 files:
-  - source: /build/index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /
+    overwrite: true
+file_exists_behavior: OVERWRITE
+permissions:
+  - object: /
+    pattern: "**"
+    owner: root
+    group: root
+    chmod: 777
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies
+    - location: before_install.sh
       timeout: 300
       runas: root
-    - location: scripts/start_server
+
+  AfterInstall:   
+    - location: after_install.sh
       timeout: 300
       runas: root
-  ApplicationStop:
-    - location: scripts/stop_server
+
+  ApplicationStart:
+    - location: app_start.sh
       timeout: 300
       runas: root
 
