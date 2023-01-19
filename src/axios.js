@@ -1,2 +1,2 @@
 import axios from "axios";
-axios.defaults.baseURL = 'http://65.0.94.25:5000';
+axios.defaults.baseURL = 'http://13.126.108.215:5000';
