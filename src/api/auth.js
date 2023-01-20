@@ -4,7 +4,7 @@ import "../axios";
 export const signup = async (data) => {
   const config = {
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post("/api/auth/signup", data, config);
@@ -14,7 +14,7 @@ export const signup = async (data) => {
 export const signin = async (data) => {
   const config = {
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post("/api/auth/signin", data, config);
@@ -23,8 +23,10 @@ export const signin = async (data) => {
 export const profileUpdate = async (data) => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post("/api/profile", data, config);
@@ -36,8 +38,10 @@ export const profileUpdate = async (data) => {
 export const verification = async (data) => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post("/api/profile/verify", data, config);
@@ -47,8 +51,10 @@ export const verification = async (data) => {
 export const allVerifications = async () => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.get("/api/profile/verifications", config);
@@ -58,8 +64,10 @@ export const allVerifications = async () => {
 export const acceptVerification = async (userId) => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.get(
@@ -72,8 +80,10 @@ export const acceptVerification = async (userId) => {
 export const deleteVerification = async (verificationId) => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.get(
@@ -87,8 +97,10 @@ export const forgotPassword = async (email) => {
   console.log(email);
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post(`/api/auth/forgotpassword`, email, config);
@@ -97,8 +109,10 @@ export const forgotPassword = async (email) => {
 export const verifytoken = async (token) => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.get(`/api/auth/resetPassword/${token}`, config);
@@ -108,18 +122,20 @@ export const changePassword = async (token, data) => {
   console.log(data);
   const config = {
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.post(`/api/auth/${token}`, data, config);
   return response;
 };
 //for chat purposes
-export const getLoggedInUser = async (id) => {
+export const getLoggedInUser = async () => {
   const config = {
     // baseURL: "http://localhost:5000/",
+    withCredentials: true,
+
     headers: {
-      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
     },
   };
   const response = await axios.get(
@@ -129,4 +145,3 @@ export const getLoggedInUser = async (id) => {
   );
   return response;
 };
-

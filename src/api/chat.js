@@ -2,9 +2,10 @@ import axios from "axios";
 
 const config = {
   // baseURL: "http://localhost:5000/",
-   headers: {
-    "Access-Control-Allow-Credentials": true,
-  },
+  withCredentials: true,
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
 };
 
 export const createChat = async (userId) => {
