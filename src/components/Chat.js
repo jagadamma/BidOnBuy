@@ -95,7 +95,7 @@ const Chat = (props) => {
   //end of side bar logic
 
   useEffect(() => {
-    socket = io("http://65.0.94.25:5000", { transports: ["websocket"] });
+    socket = io("http://13.232.156.219:5000", { transports: ["websocket"] });
     socket.on("connected", () => {
       setSocketConnected(true);
     });
