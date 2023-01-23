@@ -129,7 +129,7 @@ export const changePassword = async (token, data) => {
   return response;
 };
 //for chat purposes
-export const getLoggedInUser = async () => {
+export const getLoggedInUser = async (id) => {
   const config = {
     // baseURL: "http://localhost:5000/",
     withCredentials: true,
@@ -143,5 +143,5 @@ export const getLoggedInUser = async () => {
 
     config
   );
-  return response;
+  return response.data;
 };
