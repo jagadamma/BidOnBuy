@@ -6,7 +6,7 @@ export const setCookie = (key, value) => {
     httpOnly:true,
     secure: true,
     sameSite: 'none',
-    path: "/"
+    path: "/",
   })
 }
 
