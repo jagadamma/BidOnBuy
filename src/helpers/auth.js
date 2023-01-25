@@ -3,6 +3,7 @@ import { setLocalStorage, getLocalStorage, deleteLocalStorage } from "./localSto
 
 export const setAuthentication = (token, user) => {
   setCookie('token', token);
+  console.log(token);
   setLocalStorage('user', user);
 };
 
