@@ -4,8 +4,8 @@ export const setCookie = (key, value) => {
   Cookies.set(key, value, {
     expires: 1,
     // httpOnly:true,
-    // secure: true,
-    sameSite: 'none',
+    secure: true,
+    sameSite: 'None',
     path: "/",
   })
 }
