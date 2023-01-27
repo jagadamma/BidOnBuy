@@ -141,8 +141,8 @@ const Home = () => {
         <div className='sellWithUs'>
             {/* <img src="/images/layered.svg" alt="layered imgage"style={{width: "100%"}}/> */}
             <h3 className='pt-5'>Advertise with us</h3>
-            <p className="mb-4">Promote your bussiness on Bidonbuy. Reach millions of customer on bid on buy.</p>
-            <p>Customers come to us site for selling and buying goods across from wide range which including cars, homes, mobiles, furniture. Advertising with us is a unique opportunity to reach a huge global audience in a creative and compelling way. We present your brand's message in a bigger, bolder, and more beautiful way</p>
+            <p className="mb-4">Boost your business on Bidonbuy.com and reach millions of customers.</p>
+            <p>Customers come to our site for selling and buying goods, across from wide range including cars, homes, mobiles, and furniture. Advertising with us is a unique opportunity to reach a huge global audience creatively and compellingly. We present your brand's message in a bigger, a bolder, and more beautiful way.</p>
             <ul>
                 <li><span>✓</span>No Hidden Charge</li>
                 <li><span>✓</span>24 X 7 support</li>
