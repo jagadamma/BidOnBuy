@@ -14,7 +14,7 @@ const Footer = () => {
     <div className="col">
       <h5>Get to Know Us</h5>
       <ul className="nav flex-column">
-        <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About Us</a></li>
+        <li className="nav-item mb-2"><NavLink to="/aboutus" className="nav-link p-0 text-muted">About Us</NavLink></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Our History</a></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Community</a></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Careers</a></li>
