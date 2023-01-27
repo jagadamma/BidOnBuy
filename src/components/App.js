@@ -18,6 +18,7 @@ import ForgotPassword from "./ForgotPassword";
 import Chat from "./Chat";
 import Faq from "./Faq";
 import Terms from "./Terms";
+import AboutUs from "./AboutUs";
 import { initialState, reducer } from "../helpers/productReducer";
 import ProtectedRoute from "./ProtectedRoute";
 import { isAuthenticated } from "../helpers/auth";
@@ -106,7 +107,7 @@ const App = () => {
             />
             <Route path="/faq" element={<Faq />} />
             <Route path="/terms" element={<Terms />} />
-
+            <Route path="/aboutus" element={<AboutUs />} />
           </Routes>
         </main>
       </BrowserRouter>
