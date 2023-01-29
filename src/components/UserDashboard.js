@@ -107,7 +107,7 @@ const UserDashboard = () => {
 
   const handleProductSubmit = (e) => {
     e.preventDefault();
-    setLoader(true);
+    
 
     if (images.length==0 || isEmpty(productName) || isEmpty(productDescription) || isEmpty(mainCategory) || isEmpty(subCategory)  || isEmpty(state) || isEmpty(city)){
       showAlert('Please fill all fields', "danger")
@@ -117,6 +117,7 @@ const UserDashboard = () => {
       showAlert('Year cannot be negative', "danger")
     }
     else {
+      setLoader(true);
       let formData = new FormData();
       let productImage = [];
       console.log(images);
