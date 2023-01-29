@@ -57,10 +57,8 @@ const Profile = () => {
   };
   let verifySubmitHandler = (e) => {
     e.preventDefault();
-    setLoader(true);
     if (cameraUrl && aadhar) {
-      console.log(cameraUrl);
-      console.log(aadhar);
+      setLoader(true);
       verification({ profileImage: cameraUrl, aadhar }).then(function (data) {
         setLoader(false);
         navigate("/");
