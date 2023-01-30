@@ -22,6 +22,7 @@ import AboutUs from "./AboutUs";
 import { initialState, reducer } from "../helpers/productReducer";
 import ProtectedRoute from "./ProtectedRoute";
 import { isAuthenticated } from "../helpers/auth";
+import { Thankyou } from "./Thankyou";
 
 export const ProductContext = createContext();
 
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/verifyAccount" element={<Thankyou />} />
             <Route
               path="/user/dashboard"
               element={

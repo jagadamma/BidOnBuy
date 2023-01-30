@@ -134,7 +134,7 @@ console.log(productId)
           </div>
           <div className="d-flex justify-content-around">
               <p>{p.subCategory}</p> 
-              <p>Delhi</p>
+              <p>{p.city}</p>
               <p>{p.year==0?"New":p.year}</p>
           </div>
           <p className="singleproducthr" ></p>
