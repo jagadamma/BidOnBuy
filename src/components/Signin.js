@@ -6,13 +6,23 @@ import isEmpty from 'validator/lib/isEmpty';
 import validator from 'validator'
 import { signin } from '../api/auth';
 import { setAuthentication, isAuthenticated } from '../helpers/auth';
+import Alert from './Alert';
 
 
 const Signin = () => {
   
   let navigate = useNavigate();
   // let str = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
-
+  const [alert, setAlert] = useState(null);
+  const showAlert = (messsage, type) =>{
+    setAlert({
+      msg: messsage,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 4000)
+  }
   useEffect(() => {
     if (isAuthenticated() && isAuthenticated().role === "admin") {
       navigate('/admin/dashboard');
@@ -55,6 +65,10 @@ const Signin = () => {
 console.log(data);
       signin(data)
         .then (response => {
+          if(!response.data.token){
+            showAlert(response.data.message, "success")
+          }
+          else{
           setAuthentication(response.data.token, response.data.user)
           if (isAuthenticated() && isAuthenticated().role === "admin") {
             console.log('Redirect to admin dashboard')
@@ -63,9 +77,11 @@ console.log(data);
             console.log('Redirect to user dashboard')
             navigate('/')
           }
+        }
         })
         .catch(err => {
           console.log('Axios signin error', err)
+          showAlert(err.data.error, "danger")
         })
         
         
@@ -74,6 +90,7 @@ console.log(data);
   }
 
   const showSigninForm = () => (
+    <>  <Alert alert={alert}/>
               <div className='log-sign-main border-top'>
                   <div className="login">
                   <h1 className="text-center" style={{fontFamily: "'Open Sans', cursive"}}>BidOnBuy</h1>
@@ -97,6 +114,8 @@ console.log(data);
                     </form>
                   </div>
                 </div>
+                </>
+
   );
   return <div>
     

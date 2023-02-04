@@ -145,3 +145,14 @@ export const getLoggedInUser = async (id) => {
   );
   return response.data;
 };
+
+export const verifyEmailConfirmationtoken = async(token) => {
+  console.log("temp", token)
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.get(`/api/auth/verifyAccount/${token}`, config);
+  return response;
+}

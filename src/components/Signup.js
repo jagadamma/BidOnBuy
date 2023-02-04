@@ -9,11 +9,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import './css/css.css'
 import { setAuthentication, isAuthenticated } from '../helpers/auth';
 import PasswordStrengthBar from "react-password-strength-bar";
+import Alert from './Alert';
+
 const Signup = () => {
 
   let navigate = useNavigate();
   // let str = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
 const [check, setCheck] = useState(false);
+const [alert, setAlert] = useState(null);
+const showAlert = (messsage, type) =>{
+  setAlert({
+    msg: messsage,
+    type: type
+  })
+  setTimeout(() => {
+    setAlert(null);
+  }, 4000)
+}
 const handleCheck = (e) =>{
   setCheck(!check);
 }
@@ -87,6 +99,7 @@ const handleCheck = (e) =>{
   }
 
   const showSignupForm = () => (
+    <>  <Alert alert={alert}/>
     <section className="border-top pt-5 text-dark" style={{background: "linear-gradient(90deg, #1D1E20 0%,  #053BC7 100%)"}}>
         <div className="mask d-flex align-items-center h-100">
           <div className="container h-100 mb-5">
@@ -154,6 +167,7 @@ const handleCheck = (e) =>{
           </div>
         </div>
       </section>
+    </>
   );
   return <div>
     

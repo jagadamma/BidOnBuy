@@ -36,7 +36,7 @@ const Notification = () => {
 </div>
     {notification && notification.reverse().map((n, i) => (
         <div className='rounded p-2 pb-3 pl-4 bg-secondary mb-5' style={{borderLeft: "6px solid #0355d0"}}>
-           <p className='h3'>Congratulations! Your bid has been accepted by Seller. </p> 
+           <p className='h3'>{n.message}</p> 
            <p>{n.productName}</p>
            {/* <p>Verify the seller before making any payment.</p>
            <p>Avoid making any advance payment, it may be a trap.</p>
