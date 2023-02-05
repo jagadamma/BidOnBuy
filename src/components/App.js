@@ -35,7 +35,7 @@ const App = () => {
   return (
     <ProductContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
-        <Header />
+        <Header setSelectedChat={setSelectedChat} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
