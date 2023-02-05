@@ -68,6 +68,7 @@ const Header = (props) => {
     logout(() => {
       navigate('/signin')
     })
+    props.setSelectedChat(null);
   }
   const showNavigation  = () => (
     <>
