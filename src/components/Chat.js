@@ -152,7 +152,7 @@ const Chat = (props) => {
           setMessageInputValue("");
           socket.emit("new message", data.data);
           setAllMessage([...allMessage, data.data]);
-
+          props.setNotification([data.data, ...props.notification]);
           setLoading2(false);
         }
       })
