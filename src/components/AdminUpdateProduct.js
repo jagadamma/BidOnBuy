@@ -4,6 +4,9 @@ import { getProduct, updateProduct } from "../api/product";
 import { createCategory, getCategories } from "../api/category";
 import isEmpty from "validator/lib/isEmpty";
 import { useNavigate } from "react-router-dom";
+import { CategoryData } from "../helpers/categoryData";
+import { LocationData } from "../helpers/StateAndCity";
+
 import Alert from "./Alert";
 const AdminUpdateProduct = ({ match }) => {
   const { productId } = useParams();
@@ -11,6 +14,11 @@ const AdminUpdateProduct = ({ match }) => {
 
   const [images, setImages] = useState([]);
   const [alert, setAlert] = useState(null);
+  const [mainCategory, setMainCategory] = useState("");
+  const [disSubCategory, setSubCategory] = useState([]);
+  const [state, setState] = useState("");
+  const [cityArr, setCityArr] = useState([]);
+  const [city, setCity] = useState("");
 
   const showAlert = (messsage, type) => {
     setAlert({
@@ -24,28 +32,28 @@ const AdminUpdateProduct = ({ match }) => {
   const [productData, setProductData] = useState({
     productName: "",
     productDescription: "",
-    productPrice: "",
-    productCategory: "",
+    subCategory: "",
     productQuantity: "",
   });
-
-  const [categories, setCategories] = useState("");
-
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    loadCategories();
-  }, [loading]);
-  const loadCategories = async () => {
-    await getCategories()
-      .then((response) => {
-        setCategories(response.data);
-        console.log("categories", response.data);
-      })
-      .catch((error) => {
-        console.log("loadCategories error", error);
-      });
+  const handleMajorCategoryChange = (index) => {
+    if (index.target.value == "") {
+      setMainCategory("");
+      setSubCategory([]);
+    } else {
+      setMainCategory(CategoryData[index.target.value].title);
+      setSubCategory(CategoryData[index.target.value].subNav);
+    }
   };
+  const handleStateChange = (index) => {
+    if (index.target.value == "") {
+      setState("");
+      setCityArr([]);
+    } else {
+      setState(LocationData[index.target.value].state);
+      setCityArr(LocationData[index.target.value].districts);
+    }
+  };
+  const [loading, setLoading] = useState(false);
 
   const handleProductImage = (e) => {
     // setProductData({ ...productData, productImage: e.target.files[0] });
@@ -76,37 +84,41 @@ const AdminUpdateProduct = ({ match }) => {
   const handleProductSubmit = (e) => {
     console.log(productData);
     e.preventDefault();
-    setLoading(true);
     if (
       images.length == 0 ||
       isEmpty(productData.productName) ||
       isEmpty(productData.productDescription) ||
-      isEmpty(productData.productCategory) ||
-      isEmpty(productData.productPrice) ||
-      isEmpty(productData.productQuantity)
+      isEmpty(mainCategory) ||
+      isEmpty(productData.productQuantity) ||
+      isEmpty(productData.subCategory) ||
+      isEmpty(state) ||
+      isEmpty(city)
     ) {
       showAlert("Please fill all fields", "danger");
     } else {
+      setLoading(true);
+
       let productImage = [];
       console.log(images);
       images.forEach((i) => {
         productImage.push(i);
       });
-      console.log("chala ha");
       let finalProductData = {
         productName: productData.productName,
         productDescription: productData.productDescription,
-        productPrice: productData.productPrice,
-        productCategory: productData.productCategory,
+        productCategory: mainCategory,
+        disSubCategory: productData.subCategory,
         productQuantity: productData.productQuantity,
         productImage,
+        state,
+        city,
       };
       updateProduct(productId, finalProductData)
         .then((response) => {
           setProductData({
             productName: "",
             productDescription: "",
-            productPrice: "",
+
             productCategory: "",
             productQuantity: "",
           });
@@ -114,6 +126,7 @@ const AdminUpdateProduct = ({ match }) => {
           navigate("/");
         })
         .catch((err) => {
+          setLoading(false);
           showAlert(err.response.data.error, "danger");
         });
     }
@@ -168,29 +181,85 @@ const AdminUpdateProduct = ({ match }) => {
                   value={productData.productDescription}
                 />
               </div>
+
               <div className="form-group">
-                <label className="text-muted">Product Price</label>
-                <input
-                  type="number"
-                  name="productPrice"
-                  onChange={handleProductChange}
-                  className="form-control"
-                  value={productData.productPrice}
-                />
+                <label
+                  htmlFor="recipient-name"
+                  className="col-form-label"
+                  style={{ display: "block" }}
+                >
+                  CONFIRM YOUR LOCATION :
+                </label>
+                <label className="mt-2">State</label>
+                <select
+                  className="custom-select mr-sm-2 "
+                  onChange={handleStateChange}
+                >
+                  <option value="" selected>
+                    Choose State
+                  </option>
+                  {LocationData.map((state, index) => {
+                    return (
+                      <option key={index} value={index}>
+                        {state.state}
+                      </option>
+                    );
+                  })}
+                </select>
+                {state && (
+                  <>
+                    <label className="mt-3">City</label>
+                    <select
+                      className="custom-select mr-sm-2 "
+                      onChange={(e) => setCity(e.target.value)}
+                    >
+                      <option value="">Choose City</option>
+                      {cityArr.length > 0 &&
+                        cityArr.map((city, index) => {
+                          return (
+                            <option key={index} value={city}>
+                              {city}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </>
+                )}
               </div>
               <div className="form-group">
                 <label className="text-muted">Product Category</label>
                 <select
                   name="productCategory"
-                  onChange={handleProductChange}
-                  className="form-control"
-                  value={productData.productCategory}
+                  className="custom-select mr-sm-2"
+                  onChange={handleMajorCategoryChange}
                 >
-                  <option>Please select</option>
-                  <option>electronics</option>
-                  <option>apparels</option>
-                  <option>home</option>
+                  <option value="" selected>
+                    Choose Category
+                  </option>
+
+                  {CategoryData &&
+                    CategoryData.map((category, index) => {
+                      return <option value={index}>{category.title}</option>;
+                    })}
                 </select>
+                {disSubCategory.length > 0 && (
+                  <select
+                    name="subCategory"
+                    className="custom-select mr-sm-2 mt-3"
+                    onChange={handleProductChange}
+                  >
+                    <option value="" selected>
+                      Choose Sub Category
+                    </option>
+                    {disSubCategory.map((subCategory, index) => {
+                      return (
+                        <option key={index} value={subCategory.title}>
+                          {subCategory.title}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
               </div>
               <div className="form-group">
                 <label className="text-muted">Product Quantity</label>
