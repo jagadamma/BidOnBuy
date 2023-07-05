@@ -7,6 +7,18 @@ on:
   pull_request:
     branches:
       - main
+      # Save the original HOME value
+ORIGINAL_HOME=$HOME
+
+# Set the temporary HOME value
+export HOME='/home/ec2-user/actions-runner/aap/BidonBuy-Client/actions-runner/_work/_temp/fa065aa6-a777-41e7-83c9-78f46971fc96'
+
+# Make the desired Git config changes
+git config --global <config_key> <config_value>
+
+# Restore the original HOME value
+export HOME=$ORIGINAL_HOME
+
 
 jobs:
   build:
