@@ -31,9 +31,10 @@ jobs:
         
     - name: Install dependencies
       run: |
-       sudo yum -y install curl
-       curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
-       yum -y install nodejs npm
+       #sudo yum -y install curl
+       
+       #curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
+       sudo yum -y install nodejs npm
       
     - name: Run tests
       run: |
