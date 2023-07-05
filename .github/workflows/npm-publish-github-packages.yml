@@ -22,7 +22,7 @@ jobs:
       run: |
         pwd
         ls
-        export HOME='/home/ec2-user/actions-runner/aap/BidonBuy-Client/actions-runner/_work/_temp/a61c01f5-d846-44f6-8719-638e9e420972'      
+        #export HOME='/home/ec2-user/actions-runner/aap/BidonBuy-Client/actions-runner/_work/_temp/a61c01f5-d846-44f6-8719-638e9e420972'      
    
     - name: Set up Node.js
       uses: actions/setup-node@v2
