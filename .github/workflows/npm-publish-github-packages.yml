@@ -13,15 +13,15 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    
+   
     steps:
-    - name: Override HOME environment variable
-      run: echo "HOME='/home/ec2-user/actions-runner/aap/BidonBuy-Client/actions-runner/_work/_temp/fa065aa6-a777-41e7-83c9-78f46971fc96'" >> $GITHUB_ENV
-    
-    
     - name: Checkout code
       uses: actions/checkout@v2
       
+    - name: Override HOME environment variable
+      run: |
+        export HOME='/home/ec2-user/actions-runner/aap/BidonBuy-Client/actions-runner/_work/_temp/a61c01f5-d846-44f6-8719-638e9e420972'      
+   
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
