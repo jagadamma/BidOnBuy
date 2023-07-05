@@ -45,4 +45,4 @@ jobs:
        npm run build
        cp -rf build/* /usr/share/nginx/html/
        sudo systemctl start nginx
-       sudo systemctl restart nginx
+       
