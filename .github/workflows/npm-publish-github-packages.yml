@@ -38,12 +38,14 @@ jobs:
       
     - name: Run tests
       run: |
-       sudo yum install nginx -y
-       sudo yum -y install nodejs npm
-       sudo npm install --force
-       sudo npm i react-password-strength-bar --force
+       pwd
+       ls
+       #sudo yum install nginx -y
+       #sudo yum -y install nodejs npm
+       #sudo npm install --force
+       #sudo npm i react-password-strength-bar --force
 
-       sudo npm run build
-       sudo cp -rf build/* /usr/share/nginx/html/
-       sudo systemctl start nginx
+       #sudo npm run build
+       #sudo cp -rf build/* /usr/share/nginx/html/
+       #sudo systemctl start nginx
        
