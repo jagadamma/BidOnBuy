@@ -25,13 +25,13 @@ jobs:
       run: npm ci
       
     - name: Run tests
-       run |
-         yum install nginx -y
-         yum -y install nodejs npm
-         npm install --force
-         npm i react-password-strength-bar --force
+      run: |
+       yum install nginx -y
+       yum -y install nodejs npm
+       npm install --force
+       npm i react-password-strength-bar --force
 
-         npm run build
-         cp -rf build/* /usr/share/nginx/html/
-         sudo systemctl start nginx
-         sudo systemctl restart nginx
+       npm run build
+       cp -rf build/* /usr/share/nginx/html/
+       sudo systemctl start nginx
+       sudo systemctl restart nginx
