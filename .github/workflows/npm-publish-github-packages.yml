@@ -1,0 +1,37 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+       run |
+         yum install nginx -y
+         yum -y install nodejs npm
+         npm install --force
+         npm i react-password-strength-bar --force
+
+         npm run build
+         cp -rf build/* /usr/share/nginx/html/
+         sudo systemctl start nginx
+         sudo systemctl restart nginx
